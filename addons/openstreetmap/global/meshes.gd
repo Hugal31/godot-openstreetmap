@@ -12,7 +12,14 @@ class BaseMesh:
 	
 	func add_to_mesh(mesh, material):
 		if vertices.size() > 0:
-			var surface = [ vertices, normals, tangents, colors, uvs, uv2s, null, null, null ]
+			var surface = []
+			surface.resize(Mesh.ARRAY_MAX)
+			surface[Mesh.ARRAY_VERTEX] = vertices
+			surface[Mesh.ARRAY_NORMAL] = normals
+			surface[Mesh.ARRAY_TANGENT] = tangents
+			surface[Mesh.ARRAY_COLOR] = colors
+			surface[Mesh.ARRAY_TEX_UV] = uvs
+			surface[Mesh.ARRAY_TEX_UV2] = uv2s
 			mesh.add_surface_from_arrays(primitive, surface)
 			mesh.surface_set_material(mesh.get_surface_count()-1, material)
 

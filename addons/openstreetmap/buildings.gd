@@ -9,7 +9,7 @@ extends MeshInstance3D
 @export var house_roof_material: Material
 
 func update_data(data):
-	var generated_mesh = Mesh.new()
+	var generated_mesh = ArrayMesh.new()
 	var house_model = null #preload("res://addons/openstreetmap/house.tscn")
 	var house_walls = meshes.Walls.new()
 	var flat_roofs = meshes.Polygons.new()
@@ -83,7 +83,12 @@ func add_horizontal_triangles(mesh, vertices, colors, material):
 			normals.append(Vector3(0, 1, 0))
 			uvs.append(Vector2(v.x, v.z))
 		if colors != null: colors = PackedColorArray(colors)
-		var surface = [ PackedVector3Array(vertices), normals, null, colors, uvs, null, null, null, null ]
+		var surface = []
+		surface.resize(Mesh.ARRAY_MAX)
+		surface[Mesh.ARRAY_VERTEX] = PackedVector3Array(vertices)
+		surface[Mesh.ARRAY_NORMAL] = normals
+		surface[Mesh.ARRAY_COLOR] = colors
+		surface[Mesh.ARRAY_TEX_UV] = uvs
 		mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, surface)
 		mesh.surface_set_material(mesh.get_surface_count()-1, material)
 
@@ -94,6 +99,12 @@ func add_primitive(mesh, primitive, vertices, normals, colors, uvs, uv2s, materi
 		if colors != null: colors = PackedColorArray(colors)
 		if uvs != null: uvs = PackedVector2Array(uvs)
 		if uv2s != null: uv2s = PackedVector2Array(uv2s)
-		var surface = [ vertices, normals, null, colors, uvs, uv2s, null, null, null ]
+		var surface = []
+		surface.resize(Mesh.ARRAY_MAX)
+		surface[Mesh.ARRAY_VERTEX] = vertices
+		surface[Mesh.ARRAY_NORMAL] = normals
+		surface[Mesh.ARRAY_COLOR] = colors
+		surface[Mesh.ARRAY_TEX_UV] = uvs
+		surface[Mesh.ARRAY_TEX_UV2] = uv2s
 		mesh.add_surface_from_arrays(primitive, surface)
 		mesh.surface_set_material(mesh.get_surface_count()-1, material)
