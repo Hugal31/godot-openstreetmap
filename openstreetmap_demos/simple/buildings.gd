@@ -5,7 +5,7 @@ extends MeshInstance3D
 @export var building_roof_material: Material
 
 func update_data(data):
-	var generated_mesh = Mesh.new()
+	var generated_mesh = ArrayMesh.new()
 	var flat_roofs = meshes.Polygons.new()
 	var building_walls = meshes.Walls.new(false, false)
 	#

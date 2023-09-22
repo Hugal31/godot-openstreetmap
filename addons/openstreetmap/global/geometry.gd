@@ -2,7 +2,7 @@ extends Node
 
 static func fix_polygon(polygon):
 	if (polygon[0]-polygon[polygon.size()-1]).length() < 0.5:
-		polygon.remove(polygon.size()-1)
+		polygon.pop_back()
 	return polygon
 
 static func polygon_has_problems(polygon):
@@ -257,7 +257,7 @@ static func create_straight_skeleton(polygon, canvas_item = null, epsilon = 0.01
 				add_face_point(points[i].left_face, p1)
 				add_face_point(points[i2].right_face, p1)
 				points[i2].left_face = { point = points[i].left_face.point, after = points[i].left_face.after }
-				points.remove(i)
+				points.remove_at(i)
 		first_pass = false
 	for f in range(faces.size()):
 		var pl = faces[f]

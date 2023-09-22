@@ -7,7 +7,7 @@ extends MeshInstance3D
 const ZONE_NAMES = [ "grass", "water" ]
 
 func update_data(data):
-	var generated_mesh = Mesh.new()
+	var generated_mesh = ArrayMesh.new()
 	var generator = meshes.Polygons.new()
 	for grass in data[ZONE_NAMES[zone]]:
 		generator.add(grass, height)

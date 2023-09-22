@@ -11,7 +11,7 @@ func _ready():
 	pass
 
 func update_data(data):
-	var generated_mesh = Mesh.new()
+	var generated_mesh = ArrayMesh.new()
 	var roads_vertices = PackedVector3Array()
 	var roads_normals = PackedVector3Array()
 	for road in data.roads:
