@@ -12,7 +12,7 @@ static func polygon_has_problems(polygon):
 		for j in range(i+2, polygon.size()):
 			if (j+1) % s == i:
 				continue
-			var p = Geometry.segment_intersects_segment_2d(polygon[i], polygon[(i+1) % s], polygon[j], polygon[(j+1) % s])
+			var p = Geometry2D.segment_intersects_segment(polygon[i], polygon[(i+1) % s], polygon[j], polygon[(j+1) % s])
 			if p != null:
 				problems += 1
 				print(p)

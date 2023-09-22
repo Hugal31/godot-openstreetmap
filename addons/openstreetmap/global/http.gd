@@ -39,12 +39,11 @@ func _on_HTTPRequest_completed(result, response_code, headers, body):
 	downloading = false
 	var request = queue.front()
 	if result == RESULT_SUCCESS:
-		var dir = Directory.new()
-		dir.rename("user://http_download", request.file)
+		DirAccess.rename_absolute("user://http_download", request.file)
 		print("Downloaded "+request.url)
 		for a in request.actions:
 			a.object.callv(a.method, a.args)
 	else:
-		print("HTTP request for "+request.url+" failed")
+		print("HTTP request for "+request.url+" failed:", result)
 	queue.pop_front()
 	process_queue()

@@ -26,7 +26,7 @@ class Polygons:
 		uvs = PackedVector2Array()
 	
 	func add(polygon, height):
-		var indexes = Geometry.triangulate_polygon(polygon)
+		var indexes = Geometry2D.triangulate_polygon(polygon)
 		for i in range(indexes.size()):
 			var a = polygon[indexes[i]]
 			vertices.append(Vector3(a.x, height, a.y))
@@ -146,7 +146,7 @@ class ConvexRoofs:
 		for i in range(s):
 			var p1 = polygon[i]
 			var p2 = polygon[(i+1)%s]
-			var dist = (Geometry.get_closest_point_to_segment_2d(center, p1, p2)-center).length()
+			var dist = (Geometry2D.get_closest_point_to_segment(center, p1, p2)-center).length()
 			if dist < min_dist:
 				min_dist = dist
 		var center_3 = Vector3(center.x, height + min_dist * tan(roof_angle), center.y)
@@ -198,7 +198,7 @@ class Roofs:
 		var roofs = geometry.create_straight_skeleton(polygon)
 		var roof_indexes = []
 		for r in roofs:
-			var indexes = Geometry.triangulate_polygon(r)
+			var indexes = Geometry2D.triangulate_polygon(r)
 			if indexes.size() == 0:
 				return false
 			roof_indexes.append(indexes)

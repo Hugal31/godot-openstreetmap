@@ -20,24 +20,21 @@ func set_var(n, v):
 	variables[n] = v
 
 func read():
-	var f = File.new()
-	var err
+	var f: FileAccess = null
 	if savegame_key == null:
-		err = f.open(variables_file_name, File.READ)
+		f = FileAccess.open(variables_file_name, FileAccess.READ)
 	else:
-		err = f.open_encrypted_with_pass(variables_file_name, File.READ, savegame_key)
-	if err == 0:
+		f = FileAccess.open_encrypted_with_pass(variables_file_name, FileAccess.READ, savegame_key)
+	if f != null:
 		variables = f.get_var()
-		f.close()
 
 func write():
-	var f = File.new()
-	var err
+	var f: FileAccess
 	if savegame_key == null:
-		err = f.open(variables_file_name, File.WRITE)
+		f = FileAccess.open(variables_file_name, FileAccess.WRITE)
 	else:
-		err = f.open_encrypted_with_pass(variables_file_name, File.WRITE, savegame_key)
-	if err == 0:
+		f = FileAccess.open_encrypted_with_pass(variables_file_name, FileAccess.WRITE, savegame_key)
+	if f:
 		f.store_var(variables)
 		f.close()
 

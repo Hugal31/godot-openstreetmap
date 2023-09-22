@@ -11,10 +11,9 @@ var y = null
 var tiles = []
 
 func _ready():
-	var dir = Directory.new()
 	for d in [ "user://tiles3d", "user://tiles3d/osm", "user://tiles3d/twm" ]:
-		if !dir.dir_exists(d):
-			dir.make_dir(d)
+		if !DirAccess.dir_exists_absolute(d):
+			DirAccess.make_dir_absolute(d)
 
 func tile_distance(t):
 	return sqrt(t.x-x)*(t.x-x)+(t.y-y)*(t.y-y)
@@ -25,11 +24,11 @@ func tile_order(t1, t2):
 func set_center(p):
 	#print("Setting center to "+str(p))
 	var map_pos = reference_position + p/osm.TILE_SIZE
-	var _x = int(map_pos.x)
-	var _y = int(map_pos.y)
-	if x != _x or y != _y:
-		x = _x
-		y = _y
+	var newX = int(map_pos.x)
+	var newY = int(map_pos.y)
+	if x != newX or y != newY:
+		x = newX
+		y = newY
 		http.cancel()
 		for t in tiles:
 			t.hide()

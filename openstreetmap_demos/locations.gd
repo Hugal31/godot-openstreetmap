@@ -6,8 +6,7 @@ var country_index
 signal new_location(lat, lon)
 
 func _ready():
-	var f : File = File.new()
-	f.open("res://openstreetmap_demos/cities.json", File.READ)
+	var f = FileAccess.open("res://openstreetmap_demos/cities.json", FileAccess.READ)
 	var test_json_conv = JSON.new()
 	test_json_conv.parse(f.get_as_text())
 	cities = test_json_conv.get_data()

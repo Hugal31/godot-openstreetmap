@@ -47,12 +47,12 @@ func set_tile(_x, _y):
 	update_tile(twm_file_name, osm_file_name)
 
 func update_tile(twm_file_name, osm_file_name):
-	var dir = Directory.new()
-	if !dir.file_exists(twm_file_name) && !osm.is_valid(osm_file_name):
+	if !FileAccess.file_exists(twm_file_name) && !osm.is_valid(osm_file_name):
 		var pos1 = osm.tile2pos(osm_x, osm_y)
 		var pos2 = osm.tile2pos(osm_x+OSM_SIZE, osm_y+OSM_SIZE)
 		set_state("Downloading")
-		http.download("http://api.openstreetmap.org/api/0.6/map?bbox="+str(pos1.x)+","+str(pos2.y)+","+str(pos2.x)+","+str(pos1.y), osm_file_name, self, "update_tile", [twm_file_name, osm_file_name])
+		var url = "https://api.openstreetmap.org/api/0.6/map?bbox="+str(pos1.x)+","+str(pos2.y)+","+str(pos2.x)+","+str(pos1.y)
+		http.download(url, osm_file_name, self, "update_tile", [twm_file_name, osm_file_name])
 		return
 	set_state("Waiting")
 	#background.run(self, "do_update_tile", {twm_file_name = twm_file_name, osm_file_name = osm_file_name})
@@ -64,11 +64,11 @@ func do_update_tile(data):
 func load_twm(twm_file_name, osm_file_name):
 	data = {}
 	var ground_painter
-	var file = File.new()
 	var ok = false
+	var file: FileAccess
 	while true:
-		file.open(twm_file_name, File.READ)
-		if file.is_open():
+		file = FileAccess.open(twm_file_name, FileAccess.READ)
+		if file:
 			var id = file.get_16()
 			var version = file.get_8()
 			if id == osm.TWM_ID && version == osm.TWM_VERSION:
