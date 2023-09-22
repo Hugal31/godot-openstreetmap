@@ -1,7 +1,7 @@
-extends Spatial
+extends Node3D
 
-export(Mesh) var mesh
-export(int, 1, 8) var subdivide = 4
+@export var mesh: Mesh
+@export var subdivide = 4 # (int, 1, 8)
 
 var count = 0
 var instances = []
@@ -13,12 +13,12 @@ func _ready():
 	subdivisions.resize(subdivide*subdivide)
 	for x in range(subdivide):
 		for y in range(subdivide):
-			var multimesh_instance = MultiMeshInstance.new()
+			var multimesh_instance = MultiMeshInstance3D.new()
 			var multimesh = MultiMesh.new()
 			multimesh.set_mesh(mesh)
 			#multimesh.set_aabb(Rect3(Vector3(-subdivision_length*0.5, 0, -subdivision_length*0.5), Vector3(subdivision_length, 100, subdivision_length)))
 			multimesh_instance.set_multimesh(multimesh)
-			multimesh_instance.set_translation(Vector3((x+0.5)*subdivision_length, 0, (y+0.5)*subdivision_length))
+			multimesh_instance.set_position(Vector3((x+0.5)*subdivision_length, 0, (y+0.5)*subdivision_length))
 			multimesh_instance.lod_min_distance = 0
 			multimesh_instance.lod_max_distance = 200
 			add_child(multimesh_instance)
@@ -33,12 +33,12 @@ func add(pos):
 	count += 1
 
 func update():
-	var identity = Transform(Quat(Vector3(0, 1, 0), 0))
+	var identity = Transform3D(Quaternion(Vector3(0, 1, 0), 0))
 	var subdivision_length = osm.TILE_SIZE / subdivide
 	for i in range(subdivide*subdivide):
 		var instance_count = instances[i].size()
 		var multimesh = subdivisions[i].get_multimesh()
-		var center = subdivisions[i].get_translation()
+		var center = subdivisions[i].get_position()
 		multimesh.set_instance_count(instance_count)
 		for j in range(instance_count):
 			multimesh.set_instance_transform(j, identity.translated(instances[i][j]-center).rotated(Vector3(0, 1, 0), j))

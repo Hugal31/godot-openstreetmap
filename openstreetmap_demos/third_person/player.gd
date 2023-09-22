@@ -1,6 +1,6 @@
-extends KinematicBody
+extends CharacterBody3D
 
-export(float) var run_speed = 10.0
+@export var run_speed: float = 10.0
 
 var map = null
 
@@ -12,7 +12,9 @@ func _ready():
 
 func _physics_process(delta):
 	motion.y += -9.8*delta
-	move_and_slide(motion, Vector3(0, 1, 0))
+	set_velocity(motion)
+	set_up_direction(Vector3(0, 1, 0))
+	move_and_slide()
 	var direction = Vector2(0, 0)
 	direction.y += run_speed*Input.get_joy_axis(0, 0)
 	direction.x -= run_speed*Input.get_joy_axis(0, 1)
@@ -27,7 +29,7 @@ func _physics_process(delta):
 	if direction.length() > run_speed:
 		direction /= direction.length()
 		direction *= run_speed
-	var camera = get_node("../Camera")
+	var camera = get_node("../Camera3D")
 	if camera != null:
 		direction = direction.rotated(-0.5*PI - camera.rotation.y)
 	var h_motion_influence = delta
@@ -39,20 +41,20 @@ func _physics_process(delta):
 	var h_motion = Vector2(motion.x, motion.z)
 	h_motion.x = lerp(h_motion.x, direction.x, h_motion_influence)
 	h_motion.y = lerp(h_motion.y, direction.y, h_motion_influence)
-	if (previous_position-translation).length()/delta > 1:
+	if (previous_position-position).length()/delta > 1:
 		$Model.anim("Run")
 		rotation.y = 0.5*PI - h_motion.angle()
 	else:
 		$Model.anim("Idle")
-	previous_position = translation
+	previous_position = position
 	motion.x = h_motion.x
 	motion.z = h_motion.y
 	if map == null:
 		map = get_node("../Map")
 	else:
-		map.set_center(Vector2(translation.x, translation.z))
+		map.set_center(Vector2(position.x, position.z))
 
 func teleport(lat, lon):
-	translation = Vector3(0, 0, 0)
+	position = Vector3(0, 0, 0)
 	motion = Vector3(0, 0, 0)
 	previous_position = Vector3(0, 0, 0)

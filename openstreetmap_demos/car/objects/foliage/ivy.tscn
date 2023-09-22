@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://openstreetmap_demos/car/objects/foliage/ivy.tres" type="ArrayMesh" id=1]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/ivy_leaves_c.png" type="Texture" id=2]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/ivy_leaves_n.png.001.png" type="Texture" id=3]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/ivy_leaves_c.png" type="Texture2D" id=2]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/ivy_leaves_n.png.001.png" type="Texture2D" id=3]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 
 resource_name = "ivy_leaves"
 render_priority = 0
@@ -57,13 +57,13 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo", "Flags" ]
 
-[node name="ivy" type="MeshInstance" index="0"]
+[node name="ivy" type="MeshInstance3D" index="0"]
 
-transform = Transform( 0.0121895, 0.105003, -0.55731, 0.0311266, 0.556475, 0.105526, 0.566261, -0.032849, 0.00619617, 1.83507, 0.0341747, 2.36262 )
+transform = Transform3D( 0.0121895, 0.105003, -0.55731, 0.0311266, 0.556475, 0.105526, 0.566261, -0.032849, 0.00619617, 1.83507, 0.0341747, 2.36262 )
 layers = 1
 material_override = null
 cast_shadow = 1

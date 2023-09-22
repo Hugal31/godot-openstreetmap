@@ -1,7 +1,7 @@
-tool
+@tool
 extends Polygon2D
 
-export(bool) var show_polygons = true setget set_show_polygons
+@export var show_polygons: bool = true: set = set_show_polygons
 
 func _ready():
 	pass
@@ -18,7 +18,7 @@ func _draw():
 	var geometry = preload("res://addons/openstreetmap/global/geometry.gd")
 	var rect_node = get_node("rect")
 	var rect = rect_node.get_shape().get_extents()
-	rect = rect_node.get_transform().xform(Rect2(-rect, 2*rect))
+	rect = rect_node.get_transform() * (Rect2(-rect, 2*rect))
 	var output = geometry.clamp_polygon(get_polygon(), rect)
 	if output != null:
 		for p in output:

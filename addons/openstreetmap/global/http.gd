@@ -4,11 +4,11 @@ var queue = []
 var downloading = false
 
 func _ready():
-	connect("request_completed", self, "_on_HTTPRequest_completed")
+	connect("request_completed", Callable(self, "_on_HTTPRequest_completed"))
 
 func process_queue():
 	if !downloading:
-		while !queue.empty():
+		while !queue.is_empty():
 			var request = queue.front()
 			set_download_file("user://http_download")
 			if request(request.url) == RESULT_SUCCESS:

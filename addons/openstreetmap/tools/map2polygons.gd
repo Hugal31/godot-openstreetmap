@@ -1,7 +1,7 @@
-tool
+@tool
 extends Node2D
 
-export(String) var mapfile = null setget set_mapfile
+@export var mapfile: String = null: set = set_mapfile
 
 func _ready():
 	pass

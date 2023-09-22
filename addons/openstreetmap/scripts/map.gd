@@ -1,10 +1,10 @@
-extends Spatial
+extends Node3D
 
-export(String)  var tile_model = "res://addons/openstreetmap/tile3d.tscn"
-export(int,0,4) var size = 1
-export(Array)   var map_objects = []
+@export var tile_model: String = "res://addons/openstreetmap/tile3d.tscn"
+@export var size = 1 # (int,0,4)
+@export var map_objects: Array = []
 
-onready var tile_class = load(tile_model)
+@onready var tile_class = load(tile_model)
 var reference_position = Vector2(0, 0)
 var x = null
 var y = null
@@ -46,38 +46,37 @@ func set_center(p):
 		for t in tiles:
 			if !t.is_visible():
 				free_tiles.append(t)
-		needed_tiles.sort_custom(self, "tile_order")
+		needed_tiles.sort_custom(Callable(self, "tile_order"))
 		for t in needed_tiles:
 			var tile
-			if free_tiles.empty():
-				tile = tile_class.instance()
+			if free_tiles.is_empty():
+				tile = tile_class.instantiate()
 				add_child(tile)
 				tiles.append(tile)
 				for o in map_objects:
-					tile.add_child(o.instance())
+					tile.add_child(o.instantiate())
 			else:
 				tile = free_tiles.back()
 				free_tiles.pop_back()
 			tile.set_tile(t.x, t.y)
 			tile.show()
 	for t in tiles:
-		t.set_center(p-Vector2(t.translation.x, t.translation.z))
+		t.set_center(p-Vector2(t.position.x, t.position.z))
 
 var ground_texture_queue = []
 
 func generate_ground_texture(o):
 	ground_texture_queue.append(o)
 	if ground_texture_queue.size() == 1:
-		while !ground_texture_queue.empty():
+		while !ground_texture_queue.is_empty():
 			var object = ground_texture_queue.front()
-			$GroundTextureGenerator.render_target_update_mode = Viewport.UPDATE_ALWAYS
+			$GroundTextureGenerator.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 			$GroundTextureGenerator/DrawGround.data = object.data
-			yield(get_tree(), "idle_frame")
-			yield(get_tree(), "idle_frame")
-			$GroundTextureGenerator.render_target_update_mode = Viewport.UPDATE_DISABLED
+			await get_tree().process_frame
+			await get_tree().process_frame
+			$GroundTextureGenerator.render_target_update_mode = SubViewport.UPDATE_DISABLED
 			var viewport_texture = $GroundTextureGenerator.get_texture()
-			var target_texture = ImageTexture.new()
-			target_texture.create_from_image(viewport_texture.get_data())
-			target_texture.flags = Texture.FLAG_MIPMAPS | Texture.FLAG_FILTER
+			var target_texture = ImageTexture.create_from_image(viewport_texture.get_image())
+			# target_texture.flags = Texture2D.FLAG_MIPMAPS | Texture2D.FLAG_FILTER
 			object.set_ground_texture(target_texture)
 			ground_texture_queue.pop_front()

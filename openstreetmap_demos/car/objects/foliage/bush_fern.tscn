@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://openstreetmap_demos/car/objects/foliage/bush_fern.tres" type="ArrayMesh" id=1]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/Rore_fern-c.png" type="Texture" id=2]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/LeafnormalX_normals.P.png" type="Texture" id=3]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/Rore_fern-c.png" type="Texture2D" id=2]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/LeafnormalX_normals.P.png" type="Texture2D" id=3]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 
 resource_name = "fern"
 render_priority = 0
@@ -57,13 +57,13 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 _sections_unfolded = [ "Flags" ]
 
-[node name="bush_fern_joined" type="MeshInstance" index="0"]
+[node name="bush_fern_joined" type="MeshInstance3D" index="0"]
 
-transform = Transform( -0.00244196, -0.122121, -0.100991, 0.153581, -0.0267176, 0.0285939, -0.0390573, -0.0974233, 0.118751, 2.06284, -0.00881553, -0.125936 )
+transform = Transform3D( -0.00244196, -0.122121, -0.100991, 0.153581, -0.0267176, 0.0285939, -0.0390573, -0.0974233, 0.118751, 2.06284, -0.00881553, -0.125936 )
 layers = 1
 material_override = null
 cast_shadow = 1

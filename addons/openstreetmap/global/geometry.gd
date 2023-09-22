@@ -58,10 +58,10 @@ static func triangles_area(vectices, indexes):
 	return area
 
 func triangulate_polygon(polygon):
-	var triangles = PoolIntArray()
+	var triangles = PackedInt32Array()
 	var s = polygon.size()
 	var expected_size = (s-2)*3
-	var vertices = PoolIntArray()
+	var vertices = PackedInt32Array()
 	for i in range(s):
 		vertices.append(i)
 	while vertices.size() > 2:
@@ -214,7 +214,7 @@ static func create_straight_skeleton(polygon, canvas_item = null, epsilon = 0.01
 					min_t = t
 					split = { i = i, j1 = j1, j2 = j2 }
 		if min_t < 0:
-			if queue.empty():
+			if queue.is_empty():
 				break
 			else:
 				points = queue.back()
@@ -285,7 +285,7 @@ static func clamp_polygon(polygon, rect):
 	var output = polygon
 	for l in [ { a=1, b=0, c=-rect.position.x }, { a=0, b=1, c=-rect.position.y }, { a=-1, b=0, c=rect.end.x }, { a=0, b=-1, c=rect.end.y } ]:
 		var input = output
-		output = PoolVector2Array()
+		output = PackedVector2Array()
 		var s = input[input.size()-1]
 		for e in input:
 			if is_inside_edge(e, l):

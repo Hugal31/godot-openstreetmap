@@ -1,14 +1,14 @@
-tool
-extends MeshInstance
+@tool
+extends MeshInstance3D
 
-export(int,"Flat","Convex","Slanted") var roof_shape = 0 setget set_roof_shape
-export(PoolVector2Array) var polygon setget set_polygon
-export(int,1,20) var height = 2 setget set_height
-export(float,0,10,0.1) var level_height = 2.5 setget set_level_height
-export(float,0.1,10,0.1) var window_width = 2.5 setget set_window_width
-export(Material) var wall_material
-export(float,0,85,1) var roof_angle = 20 setget set_roof_angle
-export(Material) var roof_material
+@export var roof_shape = 0: set = set_roof_shape
+@export var polygon: PackedVector2Array: set = set_polygon
+@export var height = 2: set = set_height
+@export var level_height = 2.5: set = set_level_height
+@export var window_width = 2.5: set = set_window_width
+@export var wall_material: Material
+@export var roof_angle = 20: set = set_roof_angle
+@export var roof_material: Material
 
 func set_roof_shape(s):
 	roof_shape = s

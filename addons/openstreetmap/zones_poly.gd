@@ -1,8 +1,8 @@
-extends MeshInstance
+extends MeshInstance3D
 
-export(int, "Grass", "Water") var zone = 0
-export(Material) var material
-export(float) var height = 0.001
+@export var zone = 0 # (int, "Grass", "Water")
+@export var material: Material
+@export var height: float = 0.001
 
 const ZONE_NAMES = [ "grass", "water" ]
 

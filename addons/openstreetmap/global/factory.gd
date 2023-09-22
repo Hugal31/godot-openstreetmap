@@ -10,21 +10,21 @@ func _ready():
 func new(object):
 	if pool.has(object):
 		var p = pool[object]
-		if !p.empty():
+		if !p.is_empty():
 			var x = p.back()
 			p.pop_back()
 			return x
-	return object.instance()
+	return object.instantiate()
 
 func newnew(object, count = 0):
 	if count == 0:
 		if pool.has(object):
 			var p = pool[object]
-			if !p.empty():
+			if !p.is_empty():
 				var x = p.back()
 				p.pop_back()
 				return x
-		return object.instance()
+		return object.instantiate()
 	else:
 		var a = []
 		if pool.has(object):
@@ -40,7 +40,7 @@ func newnew(object, count = 0):
 						p.pop_back()
 					return
 		for i in range(count):
-			a.append(object.instance())
+			a.append(object.instantiate())
 		return a
 
 func keep(x, c):

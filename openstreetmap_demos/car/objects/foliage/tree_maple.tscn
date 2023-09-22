@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://openstreetmap_demos/car/objects/foliage/tree_maple.tres" type="ArrayMesh" id=1]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/Bark_Tile.jpg" type="Texture" id=2]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/bark-oldbrown-n.png" type="Texture" id=3]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/leaf-mapple-yellow-c.png" type="Texture" id=4]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/oak-branch-c.png" type="Texture" id=5]
-[ext_resource path="res://openstreetmap_demos/car/objects/foliage/oak-branch-n.png" type="Texture" id=6]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/Bark_Tile.jpg" type="Texture2D" id=2]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/bark-oldbrown-n.png" type="Texture2D" id=3]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/leaf-mapple-yellow-c.png" type="Texture2D" id=4]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/oak-branch-c.png" type="Texture2D" id=5]
+[ext_resource path="res://openstreetmap_demos/car/objects/foliage/oak-branch-n.png" type="Texture2D" id=6]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 
 resource_name = "bark_brown"
 render_priority = 0
@@ -59,10 +59,10 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 
 render_priority = 0
 flags_transparent = true
@@ -115,16 +115,16 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 _sections_unfolded = [ "Flags", "Parameters" ]
 
-[sub_resource type="CapsuleShape" id=3]
+[sub_resource type="CapsuleShape3D" id=3]
 
 radius = 0.518565
 height = 9.50038
 
-[node name="Tree" type="StaticBody"]
+[node name="Tree" type="StaticBody3D"]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -135,9 +135,9 @@ bounce = 0.0
 constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="0"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
 
-transform = Transform( -0.224294, -1.5023, 0.0121222, 1.43348, -0.217674, -0.452887, 0.449645, -0.0554331, 1.44987, 0.268015, -0.114573, 0 )
+transform = Transform3D( -0.224294, -1.5023, 0.0121222, 1.43348, -0.217674, -0.452887, 0.449645, -0.0554331, 1.44987, 0.268015, -0.114573, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1
@@ -151,13 +151,13 @@ mesh = ExtResource( 1 )
 skeleton = NodePath("..")
 material/0 = SubResource( 1 )
 material/1 = SubResource( 2 )
-_sections_unfolded = [ "Transform", "material" ]
+_sections_unfolded = [ "Transform3D", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 4.35729, 0 )
+transform = Transform3D( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 4.35729, 0 )
 shape = SubResource( 3 )
 disabled = false
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform3D" ]
 
 

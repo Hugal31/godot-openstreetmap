@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/openstreetmap/multi_mesh.gd" type="Script" id=1]
 
-[node name="MultiMesh" type="MultiMeshInstance" index="0"]
+[node name="MultiMesh" type="MultiMeshInstance3D" index="0"]
 
 layers = 1
 material_override = null

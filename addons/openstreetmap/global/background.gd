@@ -16,13 +16,13 @@ func run(object, method, data):
 	queue.append({ object = object, method = method, data = data})
 	if !thread.is_active():
 		finished = false
-		thread.start(self, "execute")
+		thread.start(Callable(self, "execute"))
 	mutex.unlock()
 
 func execute(data):
 	while true:
 		mutex.lock()
-		if queue.empty():
+		if queue.is_empty():
 			finished = true
 			mutex.unlock()
 			return

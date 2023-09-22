@@ -17,7 +17,7 @@ class TerrainMap:
 	
 	func _init():
 		var image_size = IMAGE_SIZE*(IMAGE_SIZE >> 3)
-		image = PoolIntArray()
+		image = PackedInt32Array()
 		image.resize(image_size)
 		for i in range(image_size):
 			image[i] = 0
@@ -130,7 +130,7 @@ func do_draw(tmap = false):
 		if tmap:
 			width += 1
 		var point_count = r.points.size()
-		var normals = PoolVector2Array()
+		var normals = PackedVector2Array()
 		for j in range(point_count):
 			normals.append(Vector2(0, 0))
 		for j in range(point_count-1):
@@ -140,7 +140,7 @@ func do_draw(tmap = false):
 		var a2
 		var n2
 		for j in range(point_count):
-			var polygon = PoolVector2Array()
+			var polygon = PackedVector2Array()
 			var a1 = r.points[j]
 			var n1 = normals[j].normalized()*width
 			if j != 0:

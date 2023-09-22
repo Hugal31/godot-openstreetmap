@@ -1,7 +1,7 @@
-tool
+@tool
 extends Polygon2D
 
-export(bool) var show_polygons = true setget set_show_polygons
+@export var show_polygons: bool = true: set = set_show_polygons
 
 func _ready():
 	pass

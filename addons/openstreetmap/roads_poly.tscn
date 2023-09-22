@@ -2,7 +2,7 @@
 
 [ext_resource path="res://addons/openstreetmap/roads_poly.gd" type="Script" id=1]
 
-[node name="MeshInstance" type="MeshInstance"]
+[node name="MeshInstance3D" type="MeshInstance3D"]
 
 layers = 1
 material_override = null

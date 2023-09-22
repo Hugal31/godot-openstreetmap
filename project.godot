@@ -6,17 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[  ]
-_global_script_class_icons={
-
-}
+config_version=5
 
 [application]
 
 config/name="godot-openstreetmap"
 run/main_scene="res://openstreetmap_demos/menu.tscn"
+config/features=PackedStringArray("4.1")
 config/icon="res://icon.png"
 
 [autoload]
@@ -29,14 +25,14 @@ meshes="*res://addons/openstreetmap/global/meshes.gd"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [network]
 
-ssl/certificates="res://ca-certificates.crt"
+tls/certificate_bundle_override="res://ca-certificates.crt"
 
 [rendering]
 
+environment/defaults/default_environment="res://default_env.tres"
 quality/filters/msaa=1
-environment/default_environment="res://default_env.tres"

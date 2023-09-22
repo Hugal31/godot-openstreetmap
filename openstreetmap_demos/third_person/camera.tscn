@@ -33,11 +33,11 @@ auto_exposure_scale = 0.4
 auto_exposure_min_luma = 0.05
 auto_exposure_max_luma = 8.0
 auto_exposure_speed = 0.5
-ss_reflections_enabled = false
-ss_reflections_max_steps = 64
-ss_reflections_fade_in = 0.15
-ss_reflections_fade_out = 2.0
-ss_reflections_depth_tolerance = 0.2
+ssr_enabled = false
+ssr_max_steps = 64
+ssr_fade_in = 0.15
+ssr_fade_out = 2.0
+ssr_depth_tolerance = 0.2
 ss_reflections_roughness = true
 ssao_enabled = false
 ssao_radius = 1.0
@@ -81,13 +81,13 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Glow" ]
 
-[sub_resource type="SphereShape" id=2]
+[sub_resource type="SphereShape3D" id=2]
 
 radius = 2.0
 
-[node name="Camera" type="Camera" index="0"]
+[node name="Camera3D" type="Camera3D" index="0"]
 
-transform = Transform( 1, 0, 0, 0, 0.754954, 0.655777, 0, -0.655777, 0.754954, 11, 10, 11 )
+transform = Transform3D( 1, 0, 0, 0, 0.754954, 0.655777, 0, -0.655777, 0.754954, 11, 10, 11 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = SubResource( 1 )
@@ -101,17 +101,17 @@ size = 1.0
 near = 0.1
 far = 300.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform3D" ]
 align = 0
 
-[node name="Area" type="Area" parent="." index="0"]
+[node name="Area3D" type="Area3D" parent="." index="0"]
 
 input_ray_pickable = false
 input_capture_on_drag = false
 space_override = 0
 gravity_point = false
-gravity_distance_scale = 0.0
-gravity_vec = Vector3( 0, -1, 0 )
+gravity_point_unit_distance = 0.0
+gravity_direction = Vector3( 0, -1, 0 )
 gravity = 9.8
 linear_damp = 0.1
 angular_damp = 1.0
@@ -122,12 +122,12 @@ collision_layer = 1
 collision_mask = 1
 audio_bus_override = false
 audio_bus_name = "Master"
-reverb_bus_enable = false
+reverb_bus_enabled = false
 reverb_bus_name = "Master"
 reverb_bus_amount = 0.0
 reverb_bus_uniformity = 0.0
 
-[node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
 
 shape = SubResource( 2 )
 disabled = false

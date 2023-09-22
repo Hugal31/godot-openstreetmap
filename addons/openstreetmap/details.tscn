@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://addons/openstreetmap/details_particles.shader" type="Shader" id=1]
+[ext_resource path="res://addons/openstreetmap/details_particles.gdshader" type="Shader" id=1]
 [ext_resource path="res://addons/openstreetmap/details.gd" type="Script" id=2]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -44,7 +44,7 @@ process_material = SubResource( 1 )
 draw_passes = 1
 draw_pass_1 = null
 script = ExtResource( 2 )
-_sections_unfolded = [ "Draw Passes", "Drawing", "Geometry", "LOD", "Process Material", "Time", "Transform" ]
+_sections_unfolded = [ "Draw Passes", "Drawing", "Geometry", "LOD", "Process Material", "Time", "Transform3D" ]
 mesh = null
 spacing = 1.0
 random = 1.0

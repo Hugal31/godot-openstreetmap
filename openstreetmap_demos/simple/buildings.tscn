@@ -2,7 +2,7 @@
 
 [ext_resource path="res://openstreetmap_demos/simple/buildings.gd" type="Script" id=1]
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="StandardMaterial3D" id=1]
 
 render_priority = 0
 flags_transparent = false
@@ -50,11 +50,11 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 _sections_unfolded = [ "Parameters" ]
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="StandardMaterial3D" id=2]
 
 render_priority = 0
 flags_transparent = false
@@ -102,11 +102,11 @@ uv2_scale = Vector3( 1, 1, 1 )
 uv2_offset = Vector3( 0, 0, 0 )
 uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
-proximity_fade_enable = false
+proximity_fade_enabled = false
 distance_fade_enable = false
 _sections_unfolded = [ "Parameters" ]
 
-[node name="Buildings" type="MeshInstance"]
+[node name="Buildings" type="MeshInstance3D"]
 
 layers = 1
 material_override = null
@@ -120,7 +120,7 @@ lod_max_hysteresis = 0.0
 mesh = null
 skeleton = NodePath("..")
 script = ExtResource( 1 )
-_sections_unfolded = [ "Geometry", "Transform" ]
+_sections_unfolded = [ "Geometry", "Transform3D" ]
 building_height = 1.0
 building_wall_material = SubResource( 1 )
 building_roof_material = SubResource( 2 )

@@ -1,10 +1,10 @@
-extends Area
+extends Area3D
 
-onready var ray1 = get_node("RayCast1")
-onready var ray2 = get_node("RayCast2")
-onready var animation_player = get_node("AnimationPlayer")
-onready var armature = get_node("Armature")
-onready var particles = get_node("Particles")
+@onready var ray1 = get_node("RayCast1")
+@onready var ray2 = get_node("RayCast2")
+@onready var animation_player = get_node("AnimationPlayer")
+@onready var armature = get_node("Armature")
+@onready var particles = get_node("Particles")
 
 var dead
 
@@ -22,7 +22,7 @@ func _fixed_process(delta):
 	elif ray2.is_colliding():
 		angle -= delta
 		set_rotation(Vector3(0, angle, 0))
-	set_translation(get_translation() + delta * 0.5 * Vector3(cos(angle), 0, -sin(angle)))
+	set_position(get_position() + delta * 0.5 * Vector3(cos(angle), 0, -sin(angle)))
 
 func _on_enter_screen():
 	if !dead:

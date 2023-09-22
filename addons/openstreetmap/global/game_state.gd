@@ -1,7 +1,7 @@
 extends Node
 
 const variables_file_name = "user://savedata.bin"
-onready var savegame_key = null#"TW"+OS.get_unique_ID()
+@onready var savegame_key = null#"TW"+OS.get_unique_ID()
 var variables = { }
 
 func _ready():
